@@ -15,7 +15,6 @@ const PORT = process.env.PORT || 5000;
 
 app.get("/posts", (req, res) => {
   try {
-    console.log("hi");
     res.json(dummyUsers);
   } catch (error) {
     console.log(error.message);
