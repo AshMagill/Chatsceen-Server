@@ -1,8 +1,7 @@
-import express from "express";
-import cors from "cors";
-import bodyParser from "body-parser";
-
-import { dummyUsers } from "../Server/utils/dummyData.js";
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const dummyUsers = require("./utils/dummyData.js");
 
 const app = express();
 

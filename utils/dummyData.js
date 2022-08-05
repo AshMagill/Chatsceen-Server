@@ -1,4 +1,4 @@
-export let dummyUsers = [
+let dummyUsers = [
   {
     name: "Admin",
     image: "https://randomuser.me/api/portraits/women/81.jpg",
@@ -201,3 +201,5 @@ export let dummyUsers = [
     ],
   },
 ];
+
+module.exports = dummyUsers;
