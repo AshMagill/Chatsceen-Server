@@ -15,6 +15,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 io.on("connection", (socket) => {
   console.log(socket.id);
+  socket.on("custom-event", (message) => {
+    console.log(message);
+    io.emit("recieve-message", "hi");
+  });
 });
 
 const PORT = process.env.PORT || 5000;
