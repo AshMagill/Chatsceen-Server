@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const dummyUsers = require("./utils/dummyData.js");
 
 const io = require("socket.io")(5001, {
   cors: { origin: "http://localhost:3000" },
@@ -22,14 +21,6 @@ io.on("connection", (socket) => {
     io.emit("recieve-message", "hi");
   });
 });
-
-//app.get("/chat", (req, res) => {
-//try {
-//res.json(dummyUsers);
-//} catch (error) {
-//console.log(error.message);
-//}
-//});
 
 app.use("/chat", require("./routes/chatRoutes"));
 app.use("/locations", require("./routes/locationRoutes"));
