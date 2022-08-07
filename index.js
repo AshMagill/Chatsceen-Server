@@ -1,4 +1,6 @@
 const express = require("express");
+const dotenv = require("dotenv").config();
+const { errorHandler } = require("./middleware/errorMiddleware");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
@@ -24,6 +26,8 @@ io.on("connection", (socket) => {
 
 app.use("/chat", require("./routes/chatRoutes"));
 app.use("/locations", require("./routes/locationRoutes"));
+
+app.use(errorHandler);
 
 app.listen(PORT, () =>
   console.log(`Server Running on Port: http://localhost:${PORT}`)
