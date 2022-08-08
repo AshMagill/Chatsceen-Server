@@ -1,6 +1,10 @@
 const express = require("express");
 const dotenv = require("dotenv").config();
 const { errorHandler } = require("./middleware/errorMiddleware");
+const connectDB = require("./config/db");
+
+connectDB();
+
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
