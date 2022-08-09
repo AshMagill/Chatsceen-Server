@@ -5,9 +5,10 @@ const {
   loginLocation,
   getLocation,
 } = require("../controllers/locationController");
+const { protect } = require("../middleware/authMiddleware");
 
 router.post("/", registerLocation);
 router.post("/login", loginLocation);
-router.get("/locationData", getLocation);
+router.get("/locationData", protect, getLocation);
 
 module.exports = router;

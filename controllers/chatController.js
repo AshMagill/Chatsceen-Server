@@ -7,8 +7,8 @@ const Chat = require("../models/chatModel");
 
 const getMessages = asyncHandler(async (req, res) => {
   //res.json(dummyUsers);
-  //const chat = dummyUsers; //temporary until I load up the db
-  const chat = await Chat.find();
+  const chat = dummyUsers; //temporary until I load up the db
+  //const chat = await Chat.find();
   res.status(200).json(chat);
 });
 
