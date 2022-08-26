@@ -30,6 +30,7 @@ io.on("connection", (socket) => {
 
 app.use("/chat", require("./routes/chatRoutes"));
 app.use("/locations", require("./routes/locationRoutes"));
+app.use("/users", require("./routes/userRoutes"));
 
 app.use(errorHandler);
 
