@@ -1,0 +1,21 @@
+#Products
+
+#this is just a basic template to be added to later
+
+#GET /api/products - get all products
+http://localhost:5000/api/products
+GET 
+
+#GET /api/products/:id - get single product by identify
+http://localhost:5000/api/products/61495a18cf993ffcae03ac16
+GET 
+
+#GET /api/products/:id - get single product by identify
+http://localhost:5000/off
+GET 
+
+
+#GET /api/products/:id - get single product by identify
+http://localhost:5000/api/products/1
+GET 
+
