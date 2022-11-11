@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { protect } = require("../middleware/authMiddleware");
 const {
   getMessages,
   createMessage,
@@ -8,7 +9,7 @@ const {
 } = require("../controllers/chatController");
 
 //get array of messages from location
-router.get("/", getMessages);
+router.get("/:id", getMessages);
 
 //add one message to array of messages
 router.post("/", createMessage);
