@@ -80,4 +80,12 @@ const generateToken = (id) => {
   });
 };
 
-module.exports = { registerUser, loginUser, getUser };
+//get all users
+const getUsers = asyncHandler(async (req, res) => {
+  //res.json(dummyUsers);
+  //const chat = dummyUsers; //temporary until I load up the db
+  const users = await User.find();
+  res.status(200).json(users);
+});
+
+module.exports = { registerUser, loginUser, getUser, getUsers };

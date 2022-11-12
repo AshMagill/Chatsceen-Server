@@ -18,6 +18,10 @@ POST
   "password": "password"
 }
 
+# get all users
+http://localhost:5000/users
+GET 
+
 # location register 
 http://localhost:5000/locations/register
 POST 
