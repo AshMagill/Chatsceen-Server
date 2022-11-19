@@ -3,10 +3,45 @@ const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 
+const path = require("path");
+const multer = require("multer");
+const { v4: uuidv4 } = require("uuid");
+
+//multer for user profile image storage
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, "../images/userImages/"));
+  },
+  filename: function (req, file, cb) {
+    cb(null, uuidv4() + "-" + Date.now() + path.extname(file.originalname));
+  },
+});
+
+const fileFilter = (req, file, cb) => {
+  const allowedFileTypes = ["image/jpeg", "image/jpg", "image/png"];
+  if (allowedFileTypes.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+let upload = multer({ storage, fileFilter }).single("image");
+
+// Promise wrapping the Multer upload
+const multerPromise = (req, res) => {
+  return new Promise((resolve, reject) => {
+    upload(req, res, (err) => {
+      if (!err) resolve();
+      reject(err);
+    });
+  });
+};
+
 //register new user
 const registerUser = asyncHandler(async (req, res) => {
+  await multerPromise(req, res);
   const { name, email, password } = req.body;
-
   if (!name || !email || !password) {
     res.status(400);
     throw new Error("Please enter all fields");
@@ -28,14 +63,15 @@ const registerUser = asyncHandler(async (req, res) => {
     name,
     email,
     password: hashedPassword,
+    profileImage: req.file.filename,
   });
 
   if (user) {
     res.status(201).json({
-      _id: user.id,
+      userId: user.id,
       name: user.name,
       email: user.email,
-      token: generateToken(user._id),
+      token: generateToken(user.id),
     });
   } else {
     res.status(400);

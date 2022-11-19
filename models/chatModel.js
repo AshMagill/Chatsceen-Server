@@ -18,6 +18,7 @@ const chatSchema = mongoose.Schema({
       type: "string",
       required: [true, "Please add a text value"],
     },
+    time: { type: Number, default: new Date().getTime() },
   },
 });
 

@@ -1,1 +1,1 @@
-db.chats.find();
+db.chats.find().pretty();

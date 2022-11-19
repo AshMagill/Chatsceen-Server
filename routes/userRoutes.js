@@ -9,6 +9,8 @@ const {
 
 const { protect } = require("../middleware/authMiddleware");
 
+//const { imageUpload } = require("../middleware/imageUpload");
+
 router.post("/", registerUser);
 router.post("/login", loginUser);
 router.get("/:id", getUser);
