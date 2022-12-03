@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const dotenv = require("dotenv").config();
 const { errorHandler } = require("./middleware/errorMiddleware");
@@ -19,6 +20,10 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+  "/images/userImages",
+  express.static(path.join("images", "userImages"))
+);
 
 io.on("connection", (socket) => {
   console.log(socket.id);
